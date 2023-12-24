@@ -1,19 +1,84 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-To Select An Icon You Need to Go To One Of The Following <br>
-    <a href="/MaskIcon/feedback">Feedback</a> <br>
-    <a href="/MaskIcon/applestore">Apple Store</a> <br>
-    <a href="/MaskIcon/calculator">Calculator</a> <br>
-    <a href="/MaskIcon/numbers">Numbers</a> <br>
-    <a href="/MaskIcon/tips">Tips</a> <br>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaskIcon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto Mono', sans-serif;
+            background-color: black;
+            color: green;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-<br> <br>
-To Select The Url Use the "url" parameter
-    <br> <br>
-For example if you wanted the Tips icon and example.com you would use <br>
-    <a href="/tips?url=https://example.com"> /tips?url=https://example.com </a>
-  </body>
+        #container {
+            width: 33%;
+            margin: 0 auto; /* Center the container */
+        }
+
+        h1, h2, label, select, p {
+            margin-bottom: 10px;
+        }
+
+        #urlInput, #menuOptions {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #formattedUrl {
+            color: lightgreen; /* Change the color for clickable links */
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+  <h1>MaskIcon</h1>
+
+  
+<div id="container">
+    <label for="urlInput">Enter URL:</label>
+    <input type="text" id="urlInput" oninput="updateOutput()">
+
+    <label for="menuOptions">Select Menu Option:</label>
+    <select id="menuOptions" onchange="updateOutput()">
+        <option value="tips">Tips</option>
+        <option value="feedback">Feedback</option>
+        <option value="applestore">Apple Store</option>
+        <option value="calculator">Calculator</option>
+        <option value="numbers">Numbers</option>
+    </select>
+
+    <h2>Install Link:</h2>
+ 
+</div>
+   <p id="formattedUrl" onclick="openLink()"></p>
+<script>
+    function updateOutput() {
+        const urlInput = document.getElementById('urlInput').value;
+        const menuOptions = document.getElementById('menuOptions');
+        const selectedOption = menuOptions.options[menuOptions.selectedIndex].value;
+
+        const formattedUrl = `https://samj2104.github.io/MaskIcon/${selectedOption}?url=${urlInput}`;
+        document.getElementById('formattedUrl').innerText = formattedUrl;
+    }
+
+    function openLink() {
+        const formattedUrl = document.getElementById('formattedUrl').innerText;
+        window.open(formattedUrl, '_blank');
+    }
+</script>
+
+</body>
 </html>
